@@ -1,11 +1,12 @@
-saca = last(fun (zipWith (*) [100..999] [100..999]))
-fun xs = [x | x<- xs, estaEnLista (sacaNum x) xs]
+saca = maximum(fun (listProduct[100..999]))
+
+listProduct xs = [x * y | x <- xs, y <- xs]
+
+fun xs = [x | x<- xs, esPali (sacaNum x) x]
 
 sacaNum n = regresa (divideR n)
 
-estaEnLista _ [] = False
-estaEnLista n (h:t) = if n == h then True else estaEnLista n t
-
+esPali n m = if n == m then True else False
 
 -- Divide numero en arreglo
 divideR 0 = []
