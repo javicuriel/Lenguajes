@@ -27,9 +27,11 @@ remove_stack( [Item|RestStack], Item, RestStack ).
 
 
 
-hanoi(0,_,_,_).
-hanoi(N,Start,Aux,Target):-N>0,N2 is N-1,hanoi(N2,Start,Target,Aux),remove_stack(Start,P,Start2),add_stack(P,Target,Target2),hanoi(N2,Aux,Start2,Target2).
+% hanoi(0,_,_,_).
+% hanoi(N,Start,Aux,Target):-N>0,N2 is N-1,hanoi(N2,Start,Target,Aux),remove_stack(Start,P,Start2),add_stack(P,Target,Target2),hanoi(N2,Aux,Start2,Target2).
 
-% hanoi(Disk,[S1|S],[D1|D],[A1|A]):-Disk>0,Disk2 is Disk-1,hanoi(Disk2,[S1|S],[A1|A],[D1|D]),hanoi(Disk2,[A1|A],[D1|D],)
-%
-% hanoi(Disk,S,D,A):-Disk>0,hanoi()
+
+hanoi(N):-hanoi(N,'A','C','B').
+writeHan(N,A,B):-write('Mueve el disco '), write(N), write(' de '), write(A), write(' a '), write(B), nl.
+hanoi(1,A,B,_):-writeHan(1,A,B).
+hanoi(N,A,B,C):- N>1, N2 is N-1, hanoi(N2,A,C,B), writeHan(N,A,B), hanoi(N2,C,B,A).
