@@ -4,3 +4,9 @@ insert(N, node(E,Left,Right), node(E,NewLeft,Right)):-N<E, insert(N, Left, NewLe
 
 insertList([],Tree,Tree).
 insertList([H|T],Tree,N):-insert(H,Tree,NewTree),insertList(T,NewTree,N).
+
+inorder(empty,_).
+inorder(node(A,L,R),List):-inorder(L,List),write(A),inorder(R,NewList).
+
+postorder(empty,_).
+postorder(node(A,L,R),List):-postorder(L,List),postorder(R,NewList),write(A).
