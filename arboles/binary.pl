@@ -5,8 +5,8 @@ insert(N, node(E,Left,Right), node(E,NewLeft,Right)):-N<E, insert(N, Left, NewLe
 insertList([],Tree,Tree).
 insertList([H|T],Tree,N):-insert(H,Tree,NewTree),insertList(T,NewTree,N).
 
-inorder(empty,_).
-inorder(node(A,L,R),List):-inorder(L,List),write(A),inorder(R,NewList).
+inorder(empty,[]).
+inorder(node(A,L,R),List):-inorder(L,LeftList),append(LeftList,[A|RightList],List),write(A),inorder(R,RightList).
 
-postorder(empty,_).
-postorder(node(A,L,R),List):-postorder(L,List),postorder(R,NewList),write(A).
+postorder(empty,[]).
+postorder(node(A,L,R),List):-postorder(L,LeftList),postorder(R,RightList),write(A),append(LeftList,RightList,NewList),append(NewList,[A],List).
