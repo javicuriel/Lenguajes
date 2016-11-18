@@ -53,6 +53,6 @@ delete(node(X, node(Left, Lx, Ly), R), Key, Tree):-
   X > Key,
   delete(node(Left, Lx, Ly) ,Key , Out),balance(node(X, Out, R),Tree).
 
-delete(node(X, L, node(Right, Rx, Ry)), Key, node(X, L, Out)):-
+delete(node(X, L, node(Right, Rx, Ry)), Key, Tree):-
   X < Key,
   delete(node(Right, Rx, Ry), Key, Out),balance(node(X, L, Out),Tree).
