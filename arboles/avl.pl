@@ -34,6 +34,8 @@ deleteAVL([H|T],Tree,N):-delete(Tree,H,NewTree),deleteAVL(T,NewTree,N).
 
 insertAVL([H|T],Tree):-insertList(T,node(H,empty,empty),Tree).
 
+maxNode(node(X,_,empty),X).
+maxNode(node(_,_,R),X):-maxNode(R,X).
 
 % First case, delete a lief
 delete(node(X, empty, empty), X, empty).
@@ -46,8 +48,6 @@ delete(node(X,empty, node(Y, Left, Right)), X, node(Y, Left, Right )).
 delete(node(X,Left,Right),X,node(NewX,NewL,Right)):-
   maxNode(Left,NewX),delete(Left,NewX,NewL).
 
-maxNode(node(X,empty,empty),X).
-maxNode(node(_,_,R),X):-maxNode(R,X).
 
 delete(node(X, node(Left, Lx, Ly), R), Key, Tree):-
   X > Key,
